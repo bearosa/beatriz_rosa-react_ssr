@@ -1,24 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import st from './app.module.scss';
 
-function App() {
+import { renderRoutes } from 'react-router-config';
+
+const App = ({route}: {route: any}) => {
   return (
-    <div className={st.app}>
-      <img src={logo} className={st.appLogo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      {renderRoutes(route.routes)}
     </div>
-  );
+  )
 }
 
-export default App;
+const exportable = { component: App }
+
+export default exportable;
