@@ -15,6 +15,11 @@ const PostsList = ({className}: {className: string}) => {
     shallowEqual
   )
 
+  const inputFilter: string | undefined = useSelector(
+    (state: SearchState) => state.inputFilter,
+    shallowEqual
+  )
+
   const postsPerPage = 10;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -24,6 +29,7 @@ const PostsList = ({className}: {className: string}) => {
     <div className={cls(st.list, className)}>
       {currentPosts?.length > 0 ? 
           <>
+            <p className={st.totalResults}>Showing {filteredPosts.length} results for "{inputFilter}"</p>
             {
               currentPosts.map((post, index) => {
                 return <Post post={post} key={index} />
